@@ -2,11 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 const app = express();
-const DB = require('../db/index.js');
-var Storage = new DB(process.env.storage);
-
-var CentralSystem = require('../entities/CentralSystem.js');
-var CentralSystemServer = new CentralSystem('9220');
 
 app.set('port', (process.env.PORT || 7000));
 
@@ -46,7 +41,7 @@ app.post('/api/v1/OCPP/statusNotification/:chargerID', (req, res) => {
 
 app.post('/api/v1/OCPP/authorize/:chargerID', (req, res) => {
 
-  console.log(`statusNotification Request success ${req.params.chargerID} & data is ${JSON.stringify(req.body)}`)
+  console.log(`Authorization Request success ${req.params.chargerID} & data is ${JSON.stringify(req.body)}`)
   res.send({
     "idTagInfo": {
       "status": "Accepted",
